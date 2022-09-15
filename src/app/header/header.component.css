@@ -1,0 +1,10 @@
+.navbar{
+    position: sticky;
+    top: 0px;
+    box-shadow: 1px 1px 5px black;
+    z-index: 1;
+}
+
+.navbar > a{
+    margin:0.3rem 1rem;
+}
