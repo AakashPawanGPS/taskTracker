@@ -105,6 +105,10 @@ export class TicketsComponent implements OnInit {
     this.showUpdate = false
   }
 
+  logout(){
+    localStorage.removeItem('token')
+  }
+
 
   json = [
     {

@@ -15,15 +15,10 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      email: ['',Validators.required],
+      email: ['',[Validators.required, Validators.email]],
       password: ['',Validators.required]
     })
   }
-
-  // loginForm: FormGroup = new FormGroup({
-  //   email: new FormControl('',[Validators.required, Validators.email]),
-  //   password : new FormControl('')
-  // })
 
   login() {
     this.http.get<any>("http://localhost:3000/signupUsers")
@@ -36,7 +31,8 @@ export class LoginComponent implements OnInit {
           )
           if (user) {
             alert("Login Successfull")
-            localStorage.setItem('token',user)
+            console.log(user);
+            localStorage.setItem('token',user.email+user.password)
             this.loginForm.reset()
             this.router.navigate(['tickets'])
           }
@@ -59,7 +55,7 @@ export class LoginComponent implements OnInit {
       fcn: 'Email',
       placeholder: 'Enter Your Email',
       formControlName: 'email',
-      pattern:"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+      msg:'* Not a valid Email'
     },
     {
       id: 'pass',
@@ -70,13 +66,11 @@ export class LoginComponent implements OnInit {
       fcn: 'pass',
       placeholder: 'Enter Your Password',
       formControlName: 'password'
-    },
-    {
-      id: 'submit',
-      class: 'btn btn-danger form-button',
-      type: 'submit',
-      value: 'Login'
-    },
+    }
   ];
+
+  email() {
+    return this.loginForm.get('email')
+  }
 
 }

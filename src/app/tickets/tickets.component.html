@@ -8,7 +8,7 @@
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
     </form>
     <fa-icon class="faFilter" [icon]="faFilter"></fa-icon>
-    <button routerLink="/login" class="btn btn-danger">Logout</button>
+    <button routerLink="/login" (click)="logout()" class="btn btn-danger">Logout</button>
 </nav>
 
 <table class="table table-striped table-bordered">
