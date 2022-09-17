@@ -1,25 +1,11 @@
 <!DOCTYPE html>
-<!-- <form>
-    <div class="form-group">
-        <label for="exampleInputEmail1">Email address</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-            placeholder="Enter email">
-        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-    </div>
-    <div class="form-group">
-        <label for="exampleInputPassword1">Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form> -->
-
 <form class="form" (submit)="login()" [formGroup]="loginForm">
 
     <div class="form-group" *ngFor="let fields of json">
         <label for="{{fields.id}}">{{fields.label}}</label>
         <input formControlName="{{fields.formControlName}}" value="{{fields.value}}" class="{{fields.class}}" type="{{fields.type}}" name="{{fields.name}}" id="{{fields.id}}" placeholder="{{fields.placeholder}}">
     </div>
-
+    <p>New User? Click here to<a routerLink="/signup"> Sign Up</a></p>
     <small id="emailHelp" class="form-text text-muted">We'll never share your details with anyone else.</small>
 
 </form> 

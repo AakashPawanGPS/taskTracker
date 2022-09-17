@@ -11,4 +11,9 @@
             <router-outlet></router-outlet>
         </div>
     </div>
+    <div *ngIf="router.url.includes('login') || router.url.includes('signup')" class="row">
+        <app-footer></app-footer>
+    </div>
 </div>
+
+<!-- <app-footer></app-footer> -->

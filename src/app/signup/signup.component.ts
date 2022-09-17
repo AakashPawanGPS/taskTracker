@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -8,74 +10,84 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class SignupComponent implements OnInit {
 
-  constructor() { }
+  public signupForm!: FormGroup
+  constructor(private formBuilder: FormBuilder, private http: HttpClient, private router: Router) { }
 
   ngOnInit(): void {
+    this.signupForm = this.formBuilder.group({
+      fname: [''],
+      lname: [''],
+      email: [''],
+      password: ['']
+    })
   }
 
-  signupForm: FormGroup = new FormGroup({
-    fname:new FormControl(''),
-    lname:new FormControl(''),
-    email: new FormControl('',[Validators.required, Validators.email]),
-    password : new FormControl('')
-  })
+  // signupForm: FormGroup = new FormGroup({
+  //   fname:new FormControl(''),
+  //   lname:new FormControl(''),
+  //   email: new FormControl('',[Validators.required, Validators.email]),
+  //   password : new FormControl('')
+  // })
 
   json = [
     {
       id: 'fname',
-      name:'fname',
+      name: 'fname',
       class: 'form-control form-box',
       type: 'text',
       label: 'First Name',
       fcn: 'fname',
-      placeholder:'Enter Your First Name',
-      formControlName:'fname'
+      placeholder: 'Enter Your First Name',
+      formControlName: 'fname'
     },
     {
       id: 'lname',
-      name:'lname',
+      name: 'lname',
       class: 'form-control form-box',
       type: 'text',
       label: 'Last Name',
       fcn: 'lname',
-      placeholder:'Enter Your Last Name',
-      formControlName:'lname'
+      placeholder: 'Enter Your Last Name',
+      formControlName: 'lname'
     },
     {
       id: 'email',
-      name:'Email',
+      name: 'Email',
       class: 'form-control form-box',
       type: 'email',
       label: 'Email',
       fcn: 'Email',
-      placeholder:'Enter Your Email',
-      formControlName:'email'
+      placeholder: 'Enter Your Email',
+      formControlName: 'email'
     },
     {
       id: 'pass',
-      name:'Password',
+      name: 'Password',
       class: 'form-control form-box',
       type: 'password',
       label: 'Password',
       fcn: 'pass',
-      placeholder:'Enter Your Password',
-      formControlName:'password'
+      placeholder: 'Enter Your Password',
+      formControlName: 'password'
     },
     {
       id: 'submit',
       class: 'btn btn-primary form-button',
       type: 'submit',
-      value:'Sign Up'
+      value: 'Sign Up'
     },
   ];
 
-  signup(){
+  signup() {
     console.log("Signed Up");
-    localStorage.setItem(
-      JSON.stringify(this.signupForm.value.email),
-      JSON.stringify(this.signupForm.value.password)
-    );
-    this.signupForm.reset()
+    this.http.post<any>("http://localhost:3000/signupUsers", this.signupForm.value)
+    .subscribe({
+      next: (res) =>{
+        alert("Sign Up Successfull")
+        this.signupForm.reset()
+        this.router.navigate(['login'])
+      },
+      error : (err) => console.log("Something Went Wrong")
+    })
   }
-
 }

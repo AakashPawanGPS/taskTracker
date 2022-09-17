@@ -20,9 +20,17 @@ form{
 }
 
 small{
-    font-size: 13px;
+    font-size: 12px;
 }
 
 input{
     margin-top:0.3rem;
+}
+
+a[routerLink]{
+    cursor: pointer;
+}
+
+a[routerLink]:hover{
+    color: #0275d8;
 }

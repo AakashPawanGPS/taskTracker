@@ -1,10 +1,14 @@
-.navbar{
+.navbar {
     position: sticky;
     top: 0px;
-    box-shadow: 1px 1px 5px black;
     z-index: 1;
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
-.navbar > a{
-    margin:0.3rem 1rem;
+.navbar>a {
+    margin: 0.3rem 1rem;
 }

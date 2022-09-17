@@ -1,0 +1,51 @@
+{
+  "tickets": [
+    {
+      "id": "1285",
+      "title": "Need Macbook Pro",
+      "desc": "Need MacBook Pro with M2 ultra for increased efficiency",
+      "assign": "IT Admin",
+      "status": null
+    }
+  ],
+  "signupUsers": [
+    {
+      "fname": "",
+      "lname": "",
+      "email": "",
+      "password": "",
+      "id": 1
+    },
+    {
+      "fname": "",
+      "lname": "",
+      "email": "",
+      "password": "",
+      "id": 2
+    },
+    {
+      "fname": "Aakash ",
+      "lname": "Pawan",
+      "email": "aakashpawan@gmail.com",
+      "password": "aakash123",
+      "id": 3
+    },
+    {
+      "fname": "Aakash Pawan",
+      "lname": "G P S",
+      "email": "aakashpawan@hotmail.com",
+      "password": "aakash@Pawan",
+      "id": 4
+    },
+    {
+      "fname": "Aakash",
+      "lname": "Pawan",
+      "email": "aakashpawan@gmail.com",
+      "password": "aakash123",
+      "id": 5
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
