@@ -15,8 +15,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      email: [''],
-      password: ['']
+      email: ['',Validators.required],
+      password: ['',Validators.required]
     })
   }
 
@@ -58,7 +58,8 @@ export class LoginComponent implements OnInit {
       label: 'Email',
       fcn: 'Email',
       placeholder: 'Enter Your Email',
-      formControlName: 'email'
+      formControlName: 'email',
+      pattern:"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
     },
     {
       id: 'pass',

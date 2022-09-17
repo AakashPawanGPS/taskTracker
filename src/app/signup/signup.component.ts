@@ -9,25 +9,24 @@ import { Router } from '@angular/router';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-
-  public signupForm!: FormGroup
+  // public signupForm!: FormGroup
   constructor(private formBuilder: FormBuilder, private http: HttpClient, private router: Router) { }
 
   ngOnInit(): void {
-    this.signupForm = this.formBuilder.group({
-      fname: [''],
-      lname: [''],
-      email: [''],
-      password: ['']
-    })
+    // this.signupForm = this.formBuilder.group({
+    //   fname: ['',Validators.required],
+    //   lname: ['',Validators.required],
+    //   email: ['',Validators.required],
+    //   password: ['',Validators.required]
+    // })
   }
 
-  // signupForm: FormGroup = new FormGroup({
-  //   fname:new FormControl(''),
-  //   lname:new FormControl(''),
-  //   email: new FormControl('',[Validators.required, Validators.email]),
-  //   password : new FormControl('')
-  // })
+  signupForm: FormGroup = new FormGroup({
+    fname: new FormControl('', [Validators.required]),
+    lname: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required,Validators.minLength(8)])
+  })
 
   json = [
     {
@@ -38,7 +37,8 @@ export class SignupComponent implements OnInit {
       label: 'First Name',
       fcn: 'fname',
       placeholder: 'Enter Your First Name',
-      formControlName: 'fname'
+      formControlName: 'fname',
+      msg: '* Required Field'
     },
     {
       id: 'lname',
@@ -48,7 +48,8 @@ export class SignupComponent implements OnInit {
       label: 'Last Name',
       fcn: 'lname',
       placeholder: 'Enter Your Last Name',
-      formControlName: 'lname'
+      formControlName: 'lname',
+      msg: '* Required Field'
     },
     {
       id: 'email',
@@ -58,36 +59,45 @@ export class SignupComponent implements OnInit {
       label: 'Email',
       fcn: 'Email',
       placeholder: 'Enter Your Email',
-      formControlName: 'email'
+      formControlName: 'email',
+      msg: '* Invalid Email'
     },
     {
-      id: 'pass',
+      id: 'password',
       name: 'Password',
       class: 'form-control form-box',
       type: 'password',
       label: 'Password',
       fcn: 'pass',
       placeholder: 'Enter Your Password',
-      formControlName: 'password'
-    },
-    {
-      id: 'submit',
-      class: 'btn btn-primary form-button',
-      type: 'submit',
-      value: 'Sign Up'
-    },
+      formControlName: 'password',
+      msg: '* Password Should be more than 8 Characters'
+    }
   ];
 
   signup() {
     console.log("Signed Up");
     this.http.post<any>("http://localhost:3000/signupUsers", this.signupForm.value)
-    .subscribe({
-      next: (res) =>{
-        alert("Sign Up Successfull")
-        this.signupForm.reset()
-        this.router.navigate(['login'])
-      },
-      error : (err) => console.log("Something Went Wrong")
-    })
+      .subscribe({
+        next: (res) => {
+          alert("Sign Up Successfull")
+          this.signupForm.reset()
+          this.router.navigate(['login'])
+        },
+        error: (err) => console.log("Something Went Wrong")
+      })
   }
+  fname() {
+    return this.signupForm.get('fname')
+  }
+  lname() {
+    return this.signupForm.get('lname')
+  }
+  email() {
+    return this.signupForm.get('email')
+  }
+  password() {
+    return this.signupForm.get('password')
+  }
+
 }

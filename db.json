@@ -10,20 +10,6 @@
   ],
   "signupUsers": [
     {
-      "fname": "",
-      "lname": "",
-      "email": "",
-      "password": "",
-      "id": 1
-    },
-    {
-      "fname": "",
-      "lname": "",
-      "email": "",
-      "password": "",
-      "id": 2
-    },
-    {
       "fname": "Aakash ",
       "lname": "Pawan",
       "email": "aakashpawan@gmail.com",
@@ -43,6 +29,13 @@
       "email": "aakashpawan@gmail.com",
       "password": "aakash123",
       "id": 5
+    },
+    {
+      "fname": "Aakash",
+      "lname": "Pawan",
+      "email": "abcdefgh",
+      "password": "abcdefgh",
+      "id": 6
     }
   ],
   "profile": {
