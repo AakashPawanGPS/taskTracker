@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<app-header></app-header>
+<app-header *ngIf="router.url.includes('login') || router.url.includes('signup') || router.url.includes('tickets')"></app-header>
 
 <div class="container">
     <div class="row">
