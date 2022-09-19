@@ -42,12 +42,11 @@ body {
 }
 
 .btn_get_two:hover {
-    background: transparent;
+    /* background: transparent; */
     color: #5e2ced;
 }
 
 .btn_get:hover {
-    color: #fff;
     background: #6754e2;
     border-color: #6754e2;
     -webkit-box-shadow: none;
@@ -249,4 +248,13 @@ h6 {
     cursor: pointer;
     text-decoration: none;
     color: #6754e2;
+}
+
+.subscribe{
+    color: #fbfbfd;
+    text-decoration: none;
+}
+
+.subscribe:hover{
+    color: #5e2ced;
 }

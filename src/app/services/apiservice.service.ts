@@ -12,7 +12,7 @@ export class ApiserviceService {
   constructor(private http : HttpClient) { }
 
   postTicket(data: any){
-    return this.http.post<any>("http://localhost:3tickets",data)
+    return this.http.post<any>("http://localhost:3000/tickets",data)
     .pipe(map((res:any)=>{
       return res;
     }))

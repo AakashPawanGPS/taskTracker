@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faFilter, faL, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faFilter, faTrash, faPlus, faEdit, faL, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FormGroup, FormControl, FormBuilder, Form } from '@angular/forms';
 import { TicketsModel } from './tickets.model';
 import { ApiserviceService } from '../services/apiservice.service';
@@ -17,16 +17,21 @@ export class TicketsComponent implements OnInit {
   ticketModelObj: TicketsModel = new TicketsModel();
   showAdd!: boolean;
   showUpdate!: boolean;
+  searchText!: string;
+
+  deleteTrigger: boolean = false;
 
   faFilter = faFilter;
   faPlus = faPlus;
-
-
+  faEdit = faEdit
+  faDelete = faTrash
+  faSearch = faSearch
 
   constructor(private formBuilder: FormBuilder, private api: ApiserviceService) { }
 
   ngOnInit(): void {
     this.ticketForm = this.formBuilder.group({
+      idx:[''],
       id: [''],
       title: [''],
       desc: [''],
@@ -37,6 +42,7 @@ export class TicketsComponent implements OnInit {
   }
 
   postTicketDetails() {
+    this.ticketModelObj.idx = this.ticketForm.value.idx;
     this.ticketModelObj.id = this.ticketForm.value.id;
     this.ticketModelObj.title = this.ticketForm.value.title;
     this.ticketModelObj.desc = this.ticketForm.value.desc;
@@ -45,10 +51,10 @@ export class TicketsComponent implements OnInit {
 
     this.api.postTicket(this.ticketModelObj)
       .subscribe({
-        next: (res) => {
+        next: () => {
+          this.getTicketDetails()
           alert("Ticket Raised Successfully")
           this.ticketForm.reset()
-          this.getTicketDetails()
         },
         error: (err) => console.log(err),
         complete: () => console.log('Completed')
@@ -63,49 +69,55 @@ export class TicketsComponent implements OnInit {
   }
 
   deleteTicketDetails(row: any) {
-    this.api.deleteTicket(row.id)
-      .subscribe({
-        next: (res) => {
-          alert("Ticket Resolved")
-          this.getTicketDetails()
-        }
-      })
+    this.deleteTrigger = true;
+    if (confirm("Are you sure You Want to delete this Ticket?")) {
+      this.api.deleteTicket(row.id)
+        .subscribe({
+          next: (res) => {
+            alert("Ticket Resolved")
+            this.getTicketDetails()
+          }
+        })
+    }
+    this.deleteTrigger = false
   }
 
-  editTicketDetails(row:any){
-    this.showAdd = false
-    this.showUpdate = true
-    this.ticketModelObj.id = row.id
+  editTicketDetails(row: any) {
+    console.log(this.ticketModelObj.id + " " + row.id);
+    this.ticketModelObj.idx = row.idx
     this.ticketForm.controls['id'].setValue(row.id)
     this.ticketForm.controls['title'].setValue(row.title)
     this.ticketForm.controls['desc'].setValue(row.desc)
     this.ticketForm.controls['assign'].setValue(row.assign)
     this.ticketForm.controls['status'].setValue(row.status)
+    this.showAdd = false
+    this.showUpdate = true
+    this.getTicketDetails()
   }
 
-  updateTicketDetails(){
+  updateTicketDetails() {
     this.ticketModelObj.id = this.ticketForm.value.id;
     this.ticketModelObj.title = this.ticketForm.value.title;
     this.ticketModelObj.desc = this.ticketForm.value.desc;
     this.ticketModelObj.assign = this.ticketForm.value.assign;
     this.ticketModelObj.status = this.ticketForm.value.status;
 
-    this.api.updateTicket(this.ticketModelObj,this.ticketModelObj.id)
-    .subscribe({
-      next: (res)=>{
-        alert("Ticket Updated Successfully")
-        this.getTicketDetails()
-      }
-    })
+    this.api.updateTicket(this.ticketModelObj, this.ticketModelObj.id)
+      .subscribe({
+        next: (res) => {
+          alert("Ticket Updated Successfully")
+          this.getTicketDetails()
+        }
+      })
   }
 
-  clickRaiseTicket(){
-    this.ticketForm.reset()
+  clickRaiseTicket() {
     this.showAdd = true
     this.showUpdate = false
+    this.ticketForm.reset()
   }
 
-  logout(){
+  logout() {
     localStorage.removeItem('token')
   }
 

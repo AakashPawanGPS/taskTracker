@@ -14,6 +14,9 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FooterComponent } from './footer/footer.component';
 import { ApiserviceService } from './services/apiservice.service';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { HomeComponent } from './home/home.component';
+import { FilterPipe } from './pipes/filter.pipe';
 
 
 @NgModule({
@@ -25,7 +28,9 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
     HeaderComponent,
     MainComponent,
     FooterComponent,
-    PagenotfoundComponent
+    PagenotfoundComponent,
+    HomeComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
@@ -33,7 +38,8 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
     ReactiveFormsModule,
     FormsModule,
     FontAwesomeModule,
-    HttpClientModule
+    HttpClientModule,
+    Ng2SearchPipeModule
   ],
   providers: [ApiserviceService],
   bootstrap: [AppComponent]
