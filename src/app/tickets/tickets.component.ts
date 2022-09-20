@@ -17,7 +17,8 @@ export class TicketsComponent implements OnInit {
   ticketModelObj: TicketsModel = new TicketsModel();
   showAdd!: boolean;
   showUpdate!: boolean;
-  searchText!: string;
+
+  public searchText: any = '';
 
   deleteTrigger: boolean = false;
 
@@ -31,7 +32,7 @@ export class TicketsComponent implements OnInit {
 
   ngOnInit(): void {
     this.ticketForm = this.formBuilder.group({
-      idx:[''],
+      idx: [''],
       id: [''],
       title: [''],
       desc: [''],
@@ -64,7 +65,11 @@ export class TicketsComponent implements OnInit {
   getTicketDetails() {
     this.api.getTicket()
       .subscribe({
-        next: (res) => { this.ticketData = res }
+        next: (res) => {
+          this.ticketData = res
+          console.log(this.ticketData);
+
+        }
       })
   }
 

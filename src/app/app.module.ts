@@ -17,6 +17,7 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { HomeComponent } from './home/home.component';
 import { FilterPipe } from './pipes/filter.pipe';
+import { SearchFilterPipe } from './pipes/search-filter.pipe';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { FilterPipe } from './pipes/filter.pipe';
     FooterComponent,
     PagenotfoundComponent,
     HomeComponent,
-    FilterPipe
+    FilterPipe,
+    SearchFilterPipe
   ],
   imports: [
     BrowserModule,
