@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faFilter, faTrash, faPlus, faEdit, faL, faSearch } from '@fortawesome/free-solid-svg-icons';
-import { FormGroup, FormControl, FormBuilder, Form } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Form, Validators } from '@angular/forms';
 import { TicketsModel } from './tickets.model';
 import { ApiserviceService } from '../services/apiservice.service';
 
@@ -12,7 +12,7 @@ import { ApiserviceService } from '../services/apiservice.service';
 export class TicketsComponent implements OnInit {
 
 
-  ticketForm !: FormGroup;
+  // ticketForm !: FormGroup;
   ticketData !: any;
   ticketModelObj: TicketsModel = new TicketsModel();
   showAdd!: boolean;
@@ -31,16 +31,25 @@ export class TicketsComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private api: ApiserviceService) { }
 
   ngOnInit(): void {
-    this.ticketForm = this.formBuilder.group({
-      idx: [''],
-      id: [''],
-      title: [''],
-      desc: [''],
-      assign: [''],
-      status: ['']
-    })
+    // this.ticketForm = this.formBuilder.group({
+    //   idx: [''],
+    //   id: [''],
+    //   title: [''],
+    //   desc: [''],
+    //   assign: [''],
+    //   status: ['']
+    // })
     this.getTicketDetails();
   }
+
+  ticketForm: FormGroup = new FormGroup({
+    idx: new FormControl('', [Validators.required]),
+    id: new FormControl('', [Validators.required]),
+    title: new FormControl('', [Validators.required]),
+    desc: new FormControl('', [Validators.required]),
+    assign: new FormControl('', [Validators.required]),
+    status: new FormControl('')
+  })
 
   postTicketDetails() {
     this.ticketModelObj.idx = this.ticketForm.value.idx;
@@ -136,7 +145,8 @@ export class TicketsComponent implements OnInit {
       label: 'ID',
       fcn: 'id',
       placeholder: 'Enter Your Employee ID',
-      formControlName: 'id'
+      formControlName: 'id',
+      msg:'* Required Field'
     },
     {
       id: 'title',
@@ -146,7 +156,8 @@ export class TicketsComponent implements OnInit {
       label: 'Title',
       fcn: 'title',
       placeholder: 'Ticket Title',
-      formControlName: 'title'
+      formControlName: 'title',
+      msg:'* Required Field'
     },
     {
       id: 'desc',
@@ -156,7 +167,8 @@ export class TicketsComponent implements OnInit {
       label: 'Description',
       fcn: 'desc',
       placeholder: 'Short summary of your Issue',
-      formControlName: 'desc'
+      formControlName: 'desc',
+      msg:'* Required Field'
     },
     {
       id: 'assign',
@@ -166,7 +178,8 @@ export class TicketsComponent implements OnInit {
       label: 'Assigning To',
       fcn: 'assign',
       placeholder: 'Assigning To',
-      formControlName: 'assign'
+      formControlName: 'assign',
+      msg:'* Required Field'
     },
     {
       id: 'status',

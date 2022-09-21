@@ -8,8 +8,7 @@
             name="{{fields.name}}" id="{{fields.id}}" placeholder="{{fields.placeholder}}">
         <small class="text-danger"
             *ngIf="signupForm.controls[fields.id] && signupForm.controls[fields.id].invalid && signupForm.controls[fields.id].touched">{{fields.msg}}</small>
-        <small class="text-danger"
-            *ngIf="signupForm.errors?.['minlength']">* Password must be more than 8
+        <small class="text-danger" *ngIf="signupForm.errors?.['minlength']">* Password must be more than 8
             characters</small>
     </div>
     <button [disabled]="signupForm.invalid" id="submit" type="submit"
