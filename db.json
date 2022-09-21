@@ -1,13 +1,6 @@
 {
   "tickets": [
     {
-      "id": "123",
-      "title": "Need Mouse",
-      "desc": "kjsnjfdnefowq",
-      "assign": "aaksh paesnn",
-      "status": "adsnsdvofwnoiq"
-    },
-    {
       "id": "1285",
       "title": "Need VSCode update and Need win11",
       "desc": "vdkjsfsehqfiow oihseioqhfio vhiohuivhkdjxbzjkbiwhguib ",
@@ -69,6 +62,22 @@
       "desc": "uhbjiughvj nkojihoubjkno",
       "assign": "iuhkjnoihbjlkpihojlnkojihmloihubj",
       "status": null
+    },
+    {
+      "idx": null,
+      "id": "1314",
+      "title": "Need Mongo",
+      "desc": "For development purpose, I need mongoDB and mongo Shell to be installed",
+      "assign": "IT Admin",
+      "status": null
+    },
+    {
+      "idx": null,
+      "id": "1034",
+      "title": "Need Keyboard",
+      "desc": "jhhugb",
+      "assign": "hgv",
+      "status": "uuy"
     }
   ],
   "signupUsers": [
@@ -99,6 +108,13 @@
       "email": "abcdefgh",
       "password": "abcdefgh",
       "id": 6
+    },
+    {
+      "fname": "Aakash",
+      "lname": "Pawan",
+      "email": "agyuafyy@gmi.com",
+      "password": "yuttyfffbf",
+      "id": 7
     }
   ],
   "profile": {

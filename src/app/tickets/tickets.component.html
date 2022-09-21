@@ -58,7 +58,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form [formGroup]="ticketForm">
+            <form [formGroup]="ticketForm" autocomplete="off">
                 <div class="form-group modal-form" *ngFor="let fields of json">
                     <label for="{{fields.id}}">{{fields.label}}</label>
                     <input type="{{fields.type}}" class="form-control modal-form-label" id="{{fields.id}}"

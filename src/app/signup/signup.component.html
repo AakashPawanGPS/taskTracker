@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<form class="form" (submit)="signup()" [formGroup]="signupForm">
+<form class="form" (submit)="signup()" [formGroup]="signupForm" autocomplete="off">
 
     <div class="form-group" *ngFor="let fields of json">
         <label for="{{fields.id}}">{{fields.label}}</label>

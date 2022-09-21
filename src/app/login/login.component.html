@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<form class="form" (submit)="login()" [formGroup]="loginForm">
+<form class="form" (submit)="login()" [formGroup]="loginForm" autocomplete="off">
 
     <div class="form-group" *ngFor="let fields of json">
         <label for="{{fields.id}}">{{fields.label}}</label>
