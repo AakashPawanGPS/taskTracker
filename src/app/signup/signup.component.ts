@@ -24,8 +24,8 @@ export class SignupComponent implements OnInit {
   signupForm: FormGroup = new FormGroup({
     fname: new FormControl('', [Validators.required]),
     lname: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required, Validators.email,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
-    password: new FormControl('', [Validators.required,Validators.minLength(8)])
+    email: new FormControl('', [Validators.required, Validators.email,Validators.pattern("^[a-z0-9._%+-]+@corestack+\\.[a-z]{2,4}$")]),
+    password: new FormControl('', [Validators.required,Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')])
   })
 
   json = [
@@ -71,7 +71,7 @@ export class SignupComponent implements OnInit {
       fcn: 'pass',
       placeholder: 'Enter Your Password',
       formControlName: 'password',
-      msg: '* Password Should be more than 8 Characters'
+      msg: '* Password Should be more than 8 Characters with atleast one uppercase character, one lowercase character, a symbol and a number.'
     }
   ];
 
