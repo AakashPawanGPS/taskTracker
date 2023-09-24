@@ -8,7 +8,7 @@ This project was created by Aakash Pawan.
 Step 1: Install Node Pakages using
 
 ```
-	npm install
+npm install
 ```
 
 This will Install the node packages
